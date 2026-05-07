@@ -1,11 +1,13 @@
-SELECT TAX_BRACKET.id,
+SELECT SUM(TAX_OWED) FROM (SELECT TAX_BRACKET.id,
        TAX_BRACKET.jurisdiction,
        TAX_BRACKET.country_id,
        TAX_BRACKET.province_id,
        TAX_BRACKET.city_id,
        TAX_BRACKET.percent_from,
        TAX_BRACKET.tax_from,
-       UPPER_TAX_BRACKET.tax_from AS tax_to
+       UPPER_TAX_BRACKET.tax_from AS tax_to,
+       ((CASE WHEN (:salary < UPPER_TAX_BRACKET.tax_from) THEN :salary ELSE UPPER_TAX_BRACKET.tax_from END) - TAX_BRACKET.tax_from)  AS taxable_income,
+       ((CASE WHEN (:salary < UPPER_TAX_BRACKET.tax_from) THEN :salary ELSE UPPER_TAX_BRACKET.tax_from END) - TAX_BRACKET.tax_from) * (TAX_BRACKET.percent_from/100) AS TAX_OWED
 FROM TAX AS TAX_BRACKET
          JOIN Country ON Country.id = TAX_BRACKET.country_id
          JOIN Province ON Province.country_id = Country.id
@@ -23,4 +25,5 @@ FROM TAX AS TAX_BRACKET
 WHERE Cities.name = :cityName
 AND (TAX_BRACKET.province_id = Province.id OR TAX_BRACKET.province_id IS NULL)
 AND (TAX_BRACKET.city_id = Cities.id OR TAX_BRACKET.city_id IS NULL)
-ORDER BY TAX_BRACKET.country_id, TAX_BRACKET.province_id, TAX_BRACKET.city_id, TAX_BRACKET.jurisdiction, TAX_BRACKET.tax_from;
+AND TAX_BRACKET.tax_from < :salary
+ORDER BY TAX_BRACKET.country_id, TAX_BRACKET.province_id, TAX_BRACKET.city_id, TAX_BRACKET.jurisdiction, TAX_BRACKET.tax_from);
