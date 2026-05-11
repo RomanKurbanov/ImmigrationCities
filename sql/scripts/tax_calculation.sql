@@ -13,11 +13,11 @@ SELECT TAX_BRACKET.id,
              ELSE UPPER_TAX_BRACKET.tax_from
            END) - TAX_BRACKET.tax_from)                                    AS taxable_income,
 
-       ((CASE
+       case when (:salary < tax_bracket.income_floor ) then 0  else LEAST(((CASE
              WHEN (UPPER_TAX_BRACKET IS NULL OR :salary < UPPER_TAX_BRACKET.tax_from)
                  THEN :salary
              ELSE UPPER_TAX_BRACKET.tax_from
-           END) - TAX_BRACKET.tax_from) * (TAX_BRACKET.percent_from / 100) AS tax_owed
+           END) - TAX_BRACKET.tax_from) * (TAX_BRACKET.percent_from / 100), tax_bracket.tax_limit) end AS tax_owed
 
 FROM TAX AS TAX_BRACKET
          JOIN Country ON Country.id = TAX_BRACKET.country_id

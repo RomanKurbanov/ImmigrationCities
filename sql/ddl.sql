@@ -84,3 +84,4 @@ create table public.tax (
   match simple on update no action on delete no action
 );
 alter table tax add column tax_limit numeric;
+alter table tax add column income_floor numeric;
