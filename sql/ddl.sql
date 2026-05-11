@@ -2,7 +2,7 @@ create type public.rating as enum ('good', 'okay', 'bad');
 create type public.carfree as enum ('Yes', 'No', 'Maybe');
 create type public.jurisdiction as enum ('federal', 'province', 'city', 'social');
 
-create sequence public.cities_id_seq;
+create sequence public.city_id_seq;
 create sequence public.country_id_seq;
 create sequence public.province_id_seq;
 create sequence public.tax_id_seq;
@@ -36,8 +36,8 @@ create table public.province (
   match simple on update no action on delete cascade
 );
 
-create table public.cities (
-  id integer primary key not null default nextval('cities_id_seq'::regclass),
+create table public.city (
+  id integer primary key not null default nextval('city_id_seq'::regclass),
   name text not null,
   human_development_index numeric(4,3) not null,
   quality_of_life_index numeric,
@@ -74,7 +74,7 @@ create table public.tax (
   tax_from numeric,
   currency text not null,
   fixed_tax numeric,
-  foreign key (city_id) references public.cities (id)
+  foreign key (city_id) references public.city (id)
   match simple on update no action on delete no action,
   foreign key (country_id) references public.country (id)
   match simple on update no action on delete no action,
