@@ -5,17 +5,19 @@ SELECT TAX_BRACKET.id,
        TAX_BRACKET.city_id,
        TAX_BRACKET.percent_from,
        TAX_BRACKET.tax_from,
-       UPPER_TAX_BRACKET.tax_from AS tax_to,
+       UPPER_TAX_BRACKET.tax_from                                          AS tax_to,
 
-((CASE WHEN (UPPER_TAX_BRACKET IS NULL OR :salary < UPPER_TAX_BRACKET.tax_from)
-       THEN :salary
-       ELSE UPPER_TAX_BRACKET.tax_from
-  END) - TAX_BRACKET.tax_from) AS taxable_income,
+       ((CASE
+             WHEN (UPPER_TAX_BRACKET IS NULL OR :salary < UPPER_TAX_BRACKET.tax_from)
+                 THEN :salary
+             ELSE UPPER_TAX_BRACKET.tax_from
+           END) - TAX_BRACKET.tax_from)                                    AS taxable_income,
 
-((CASE WHEN (UPPER_TAX_BRACKET IS NULL OR :salary < UPPER_TAX_BRACKET.tax_from)
-       THEN :salary
-       ELSE UPPER_TAX_BRACKET.tax_from
-  END) - TAX_BRACKET.tax_from) * (TAX_BRACKET.percent_from / 100) AS tax_owed
+       ((CASE
+             WHEN (UPPER_TAX_BRACKET IS NULL OR :salary < UPPER_TAX_BRACKET.tax_from)
+                 THEN :salary
+             ELSE UPPER_TAX_BRACKET.tax_from
+           END) - TAX_BRACKET.tax_from) * (TAX_BRACKET.percent_from / 100) AS tax_owed
 
 FROM TAX AS TAX_BRACKET
          JOIN Country ON Country.id = TAX_BRACKET.country_id
