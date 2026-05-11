@@ -165,54 +165,33 @@ INSERT INTO public.tax (jurisdiction, city_id, province_id, country_id, percent_
 INSERT INTO public.tax (jurisdiction, city_id, province_id, country_id, percent_from, percent_to, tax_from, currency, fixed_tax) VALUES ('federal', null, null, 36, 30, null, 420000, 'CNY', 52920);
 INSERT INTO public.tax (jurisdiction, city_id, province_id, country_id, percent_from, percent_to, tax_from, currency, fixed_tax) VALUES ('federal', null, null, 36, 35, null, 660000, 'CNY', 85920);
 INSERT INTO public.tax (jurisdiction, city_id, province_id, country_id, percent_from, percent_to, tax_from, currency, fixed_tax) VALUES ('federal', null, null, 36, 45, null, 960000, 'CNY', 181920);
+
 insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency) values ('social',(select id from country where name = 'Croatia'),20,0,'EUR');
-
 insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency) values ('social',(select id from country where name = 'France'),23,0,'EUR');
-
 insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency) values ('social',(select id from country where name = 'Italy'),10,0,'EUR');
-
 insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency) values ('social',(select id from country where name = 'Spain'),6.5,0,'EUR');
-
 insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency) values ('social',(select id from country where name = 'Netherlands'),27.65,0,'EUR');
-
 insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency) values ('social',(select id from country where name = 'Norway'),7.6,0,'NOK');
-
 insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency) values ('social',(select id from country where name = 'Poland'),13.71,0,'PLN');
-
 insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency) values ('social',(select id from country where name = 'Czech Republic'),11.6,0,'CZK');
-
 insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency) values ('social',(select id from country where name = 'Austria'),18.10,0,'EUR');
-
 insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency) values ('social',(select id from country where name = 'Hungary'),18.5,0,'HUF');
-
 insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency) values ('social',(select id from country where name = 'Slovenia'),22.1,0,'EUR');
-
 insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency) values ('social',(select id from country where name = 'Serbia'),19.9,0,'RSD');
-
 insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency) values ('social',(select id from country where name = 'Romania'),35,0,'RON');
-
 insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency) values ('social',(select id from country where name = 'Republic of Ireland'),4.2,16896,'EUR');
 insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency) values ('social',(select id from country where name = 'Republic of Ireland'),0.5,0,'EUR');
 insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency) values ('social',(select id from country where name = 'Republic of Ireland'),2,12012,'EUR');
 insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency) values ('social',(select id from country where name = 'Republic of Ireland'),3,27700,'EUR');
 insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency) values ('social',(select id from country where name = 'Republic of Ireland'),8,70000,'EUR');
 insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency) values ('social',(select id from country where name = 'Republic of Ireland'),11,100000,'EUR');
-
 insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency) values ('social',(select id from country where name = 'Belarus'),1,0,'BYN');
-
 insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency) values ('social',(select id from country where name = 'Vietnam'),10.5,0,'VND');
 insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency) values ('social',(select id from country where name = 'South Africa'),1,0,'ZAR');
-
 insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency) values ('social',(select id from country where name = 'Estonia'),1.6,0,'EUR');
-
 insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency) values ('social',(select id from country where name = 'Latvia'),10.5,0,'EUR');
-
 insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency) values ('social',(select id from country where name = 'Lithuania'),19.5,0,'EUR');
-
 insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency) values ('social',(select id from country where name = 'Finland'),9.17,0,'EUR');
-
 insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency) values ('social',(select id from country where name = 'Denmark'),8,0,'DKK');
-
 insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency) values ('social',(select id from country where name = 'Portugal'),11,0,'EUR');
-
 insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency) values ('social',(select id from country where name = 'Georgia'),2,0,'GEL');
