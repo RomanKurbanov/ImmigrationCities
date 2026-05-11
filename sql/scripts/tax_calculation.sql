@@ -1,21 +1,20 @@
-select sum(tax_owed) as total from (SELECT TAX_BRACKET.id,
+SELECT TAX_BRACKET.id,
        TAX_BRACKET.jurisdiction,
        TAX_BRACKET.country_id,
        TAX_BRACKET.province_id,
        TAX_BRACKET.city_id,
        TAX_BRACKET.percent_from,
        TAX_BRACKET.tax_from,
-       UPPER_TAX_BRACKET.tax_from                                AS tax_to,
-       COALESCE(UPPER_TAX_BRACKET.tax_from, 9999999999999) AS tax_to,
+       UPPER_TAX_BRACKET.tax_from AS tax_to,
 
-((CASE WHEN (:salary < COALESCE(UPPER_TAX_BRACKET.tax_from, 9999999999999))
+((CASE WHEN (UPPER_TAX_BRACKET IS NULL OR :salary < UPPER_TAX_BRACKET.tax_from)
        THEN :salary
-       ELSE COALESCE(UPPER_TAX_BRACKET.tax_from, 9999999999999)
+       ELSE UPPER_TAX_BRACKET.tax_from
   END) - TAX_BRACKET.tax_from) AS taxable_income,
 
-((CASE WHEN (:salary < COALESCE(UPPER_TAX_BRACKET.tax_from, 9999999999999))
+((CASE WHEN (UPPER_TAX_BRACKET IS NULL OR :salary < UPPER_TAX_BRACKET.tax_from)
        THEN :salary
-       ELSE COALESCE(UPPER_TAX_BRACKET.tax_from, 9999999999999)
+       ELSE UPPER_TAX_BRACKET.tax_from
   END) - TAX_BRACKET.tax_from) * (TAX_BRACKET.percent_from / 100) AS tax_owed
 
 FROM TAX AS TAX_BRACKET
@@ -39,4 +38,4 @@ WHERE Cities.name = :cityName
   AND (TAX_BRACKET.city_id = Cities.id OR TAX_BRACKET.city_id IS NULL)
   AND TAX_BRACKET.tax_from < :salary
 ORDER BY TAX_BRACKET.country_id, TAX_BRACKET.province_id, TAX_BRACKET.city_id, TAX_BRACKET.jurisdiction,
-         TAX_BRACKET.tax_from);
+         TAX_BRACKET.tax_from;
