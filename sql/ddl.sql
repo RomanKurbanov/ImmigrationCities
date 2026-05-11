@@ -83,3 +83,4 @@ create table public.tax (
   foreign key (province_id) references public.province (id)
   match simple on update no action on delete no action
 );
+alter table tax add column tax_limit numeric;
