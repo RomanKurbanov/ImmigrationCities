@@ -24,3 +24,4 @@ INSERT INTO public.currency (id, exchange_rate_usd) VALUES ('AUD', 0);
 INSERT INTO public.currency (id, exchange_rate_usd) VALUES ('NZD', 0);
 INSERT INTO public.currency (id, exchange_rate_usd) VALUES ('THB', 0);
 INSERT INTO public.currency (id, exchange_rate_usd) VALUES ('ZAR', 0);
+INSERT INTO public.currency (id, exchange_rate_usd) VALUES ('HKD', 0);

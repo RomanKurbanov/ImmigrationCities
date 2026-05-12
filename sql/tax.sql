@@ -195,3 +195,59 @@ insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency) va
 insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency) values ('social',(select id from country where name = 'Denmark'),8,0,'DKK');
 insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency) values ('social',(select id from country where name = 'Portugal'),11,0,'EUR');
 insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency) values ('social',(select id from country where name = 'Georgia'),2,0,'GEL');
+
+
+
+
+
+insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency,tax_limit) values ('social',(select id from country where name = 'Japan'),9.15,0,'JPY',7800000);
+insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency,tax_limit) values ('social',(select id from country where name = 'Japan'),4.995,0,'JPY',16680000);
+
+insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency,tax_limit) values ('social',(select id from country where name = 'Philippines'),7.5,0,'PHP',51000);
+
+insert into tax  (jurisdiction, country_id,city_id, percent_from, tax_from, currency,tax_limit) values ('social',(select id from country where name = 'China'),(select id from city where name = 'Shanghai'),10.5,0,'CNY',447624);
+insert into tax  (jurisdiction, country_id,city_id, percent_from, tax_from, currency,tax_limit) values ('social',(select id from country where name = 'China'),(select id from city where name = 'Guangzhou'),10.2,0,'CNY',493344);
+insert into tax  (jurisdiction, country_id,city_id, percent_from, tax_from, currency,tax_limit) values ('social',(select id from country where name = 'China'),(select id from city where name = 'Beijing'),10.2,0,'CNY',493344);
+insert into tax  (jurisdiction, country_id,city_id, percent_from, tax_from, currency,tax_limit) values ('social',(select id from country where name = 'China'),(select id from city where name = 'Nanjing'),10.5,0,'CNY',408000);
+insert into tax  (jurisdiction, country_id,city_id, percent_from, tax_from, currency,tax_limit) values ('social',(select id from country where name = 'China'),(select id from city where name = 'Xiamen'),10.5,0,'CNY',336000);
+insert into tax  (jurisdiction, country_id,city_id, percent_from, tax_from, currency,tax_limit) values ('social',(select id from country where name = 'China'),(select id from city where name = 'Hangzhou'),10.5,0,'CNY',396000);
+insert into tax  (jurisdiction, country_id,city_id, percent_from, tax_from, currency,tax_limit,income_floor) values ('social',(select id from country where name = 'China'),(select id from city where name = 'Hong Kong'),5,0,'HKD',18000,85200);
+
+insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency,tax_limit) values ('social',(select id from country where name = 'Argentina'),17,0,'ARS',44774544);
+
+insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency,tax_limit) values ('social',(select id from country where name = 'Sweden'),7,0,'SEK',47100);
+
+insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency,tax_limit) values ('social',(select id from country where name = 'Germany'),9.3,0,'EUR',101400);
+insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency,tax_limit) values ('social',(select id from country where name = 'Germany'),8.75,0,'EUR',69700);
+
+insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency,tax_limit) values ('social',(select id from country where name = 'Thailand'),5,0,'THB',210000);
+
+insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency,tax_limit) values ('social',(select id from country where name = 'South Korea'),4.75,0,'KRW',7068000);
+insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency,tax_limit) values ('social',(select id from country where name = 'South Korea'),4.0674,0,'KRW',124682640);
+insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency) values ('social',(select id from country where name = 'South Korea'),0.9,0,'KRW');
+
+insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency,tax_limit) values ('social',(select id from country where name = 'Canada'),5.95,0,'CAD',4310);
+insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency,tax_limit) values ('social',(select id from country where name = 'Canada'),9.95,69700,'CAD',416);
+insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency,tax_limit) values ('social',(select id from country where name = 'Canada'),1.63,0,'CAD',1123);
+
+insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency,tax_limit) values ('social',(select id from country where name = 'Armenia'),5,0,'AMD',1050000);
+insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency,tax_limit,income_floor) values ('social',(select id from country where name = 'Armenia'),5,0,'AMD',1050000,6000000);
+
+
+insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency,tax_limit) values ('social',(select id from country where name = 'Bulgaria'),13.78,0,'BGN',46200);
+update tax set exempt_percent = (select percent_from from tax where jurisdiction = 'social' and country_id =(select id from country where name = 'Bulgaria')) where jurisdiction = 'federal' AND country_id = (select id from country where name = 'Bulgaria');
+
+
+
+
+insert into tax  (jurisdiction, country_id,city_id, percent_from, tax_from, currency,exempt_percent) values ('city',(select id from country where name = 'Croatia'),(select id from city where name = 'Zagreb'),23,7200,'EUR',(select percent_from from tax where jurisdiction = 'social' and country_id =(select id from country where name = 'Croatia')));
+insert into tax  (jurisdiction, country_id,city_id, percent_from, tax_from, currency,exempt_percent) values ('city',(select id from country where name = 'Croatia'),(select id from city where name = 'Zagreb'),33,67200,'EUR',(select percent_from from tax where jurisdiction = 'social' and country_id =(select id from country where name = 'Croatia')));
+
+insert into tax  (jurisdiction, country_id,city_id, percent_from, tax_from, currency,exempt_percent) values ('city',(select id from country where name = 'Croatia'),(select id from city where name = 'Pula'),22,7200,'EUR',(select percent_from from tax where jurisdiction = 'social' and country_id =(select id from country where name = 'Croatia')));
+insert into tax  (jurisdiction, country_id,city_id, percent_from, tax_from, currency,exempt_percent) values ('city',(select id from country where name = 'Croatia'),(select id from city where name = 'Pula'),32,67200,'EUR',(select percent_from from tax where jurisdiction = 'social' and country_id =(select id from country where name = 'Croatia')));
+
+insert into tax  (jurisdiction, country_id,city_id, percent_from, tax_from, currency,exempt_percent) values ('city',(select id from country where name = 'Croatia'),(select id from city where name = 'Split'),23,7200,'EUR',(select percent_from from tax where jurisdiction = 'social' and country_id =(select id from country where name = 'Croatia')));
+insert into tax  (jurisdiction, country_id,city_id, percent_from, tax_from, currency,exempt_percent) values ('city',(select id from country where name = 'Croatia'),(select id from city where name = 'Split'),33,67200,'EUR',(select percent_from from tax where jurisdiction = 'social' and country_id =(select id from country where name = 'Croatia')));
+
+insert into tax  (jurisdiction, country_id,city_id, percent_from, tax_from, currency,exempt_percent) values ('city',(select id from country where name = 'Croatia'),(select id from city where name = 'Dubrovnik'),22,7200,'EUR',(select percent_from from tax where jurisdiction = 'social' and country_id =(select id from country where name = 'Croatia')));
+insert into tax  (jurisdiction, country_id,city_id, percent_from, tax_from, currency,exempt_percent) values ('city',(select id from country where name = 'Croatia'),(select id from city where name = 'Dubrovnik'),32,67200,'EUR',(select percent_from from tax where jurisdiction = 'social' and country_id =(select id from country where name = 'Croatia')));

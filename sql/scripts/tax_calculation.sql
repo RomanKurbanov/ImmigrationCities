@@ -5,9 +5,10 @@ SELECT TAX_BRACKET.id,
        TAX_BRACKET.city_id,
        TAX_BRACKET.percent_from,
        TAX_BRACKET.tax_from,
+       TAX_BRACKET.exempt_percent,
        UPPER_TAX_BRACKET.tax_from                                        AS tax_to,
-       LEAST(:salary, UPPER_TAX_BRACKET.tax_from) - TAX_BRACKET.tax_from AS taxable_income,
-       LEAST((LEAST(:salary, UPPER_TAX_BRACKET.tax_from) - TAX_BRACKET.tax_from) * (TAX_BRACKET.percent_from / 100),
+       LEAST(:salary, UPPER_TAX_BRACKET.tax_from) - TAX_BRACKET.tax_from * (1 - (coalesce(TAX_BRACKET.exempt_percent, 0) / 100)) AS taxable_income,
+       LEAST((LEAST(:salary, UPPER_TAX_BRACKET.tax_from) - TAX_BRACKET.tax_from) * (1 - (coalesce(TAX_BRACKET.exempt_percent, 0) / 100)) * (TAX_BRACKET.percent_from / 100) ,
              TAX_BRACKET.tax_limit)                                      AS tax_owed
 
 FROM TAX AS TAX_BRACKET
@@ -29,6 +30,6 @@ FROM TAX AS TAX_BRACKET
 WHERE city.name = :cityName
   AND (TAX_BRACKET.province_id = Province.id OR TAX_BRACKET.province_id IS NULL)
   AND (TAX_BRACKET.city_id = city.id OR TAX_BRACKET.city_id IS NULL)
-  AND TAX_BRACKET.tax_from < :salary
+  AND TAX_BRACKET.tax_from < (:salary * (1.0 - (coalesce(TAX_BRACKET.exempt_percent,0)/100)))
 ORDER BY TAX_BRACKET.country_id, TAX_BRACKET.province_id, TAX_BRACKET.city_id, TAX_BRACKET.jurisdiction,
          TAX_BRACKET.tax_from;

@@ -85,3 +85,4 @@ create table public.tax (
 );
 alter table tax add column tax_limit numeric;
 alter table tax add column income_floor numeric;
+alter table tax add column exempt_percent numeric;
