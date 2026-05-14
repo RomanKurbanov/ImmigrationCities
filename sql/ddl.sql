@@ -1,6 +1,7 @@
 create type public.rating as enum ('good', 'okay', 'bad');
 create type public.carfree as enum ('Yes', 'No', 'Maybe');
 create type public.jurisdiction as enum ('federal', 'province', 'city', 'social');
+create type deduction_type as enum ('professional', 'personal', 'local');
 
 create sequence public.city_id_seq;
 create sequence public.country_id_seq;
@@ -86,3 +87,20 @@ create table public.tax (
 alter table tax add column tax_limit numeric;
 alter table tax add column income_floor numeric;
 alter table tax add column exempt_percent numeric;
+CREATE table deduction (
+    id serial primary key ,
+    deduction_type deduction_type not null,
+    country_id integer not null,
+    deduction_from numeric not null,
+    deduction_rate numeric ,
+    fixed_deduction numeric ,
+    currency text not null,
+    deduction_limit numeric ,
+    foreign key (country_id) references country(id)
+                       match simple on update no action on delete no action,
+    foreign key (currency) references currency(id)
+                       match simple on update no action on delete no action
+
+
+);
+
