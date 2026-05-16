@@ -251,3 +251,48 @@ insert into tax  (jurisdiction, country_id,city_id, percent_from, tax_from, curr
 
 insert into tax  (jurisdiction, country_id,city_id, percent_from, tax_from, currency,exempt_percent) values ('city',(select id from country where name = 'Croatia'),(select id from city where name = 'Dubrovnik'),22,7200,'EUR',(select percent_from from tax where jurisdiction = 'social' and country_id =(select id from country where name = 'Croatia')));
 insert into tax  (jurisdiction, country_id,city_id, percent_from, tax_from, currency,exempt_percent) values ('city',(select id from country where name = 'Croatia'),(select id from city where name = 'Dubrovnik'),32,67200,'EUR',(select percent_from from tax where jurisdiction = 'social' and country_id =(select id from country where name = 'Croatia')));
+
+
+--Налогооблагаемый доход × (Ставка налога/100) – fixed_tax
+insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency) values ('federal',(select id from country where name = 'Japan'),5,0,'JPY');
+insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency,fixed_tax) values ('federal',(select id from country where name = 'Japan'),10,1950000,'JPY',-97500);
+insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency,fixed_tax) values ('federal',(select id from country where name = 'Japan'),20,3300000,'JPY',-427500);
+insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency,fixed_tax) values ('federal',(select id from country where name = 'Japan'),23,6950000,'JPY',-636000);
+insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency,fixed_tax) values ('federal',(select id from country where name = 'Japan'),33,9000000,'JPY',-1536000);
+insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency,fixed_tax) values ('federal',(select id from country where name = 'Japan'),40,18000000,'JPY',-2796000);
+insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency,fixed_tax) values ('federal',(select id from country where name = 'Japan'),45,40000000,'JPY',-4796000);
+
+
+
+insert into tax  (jurisdiction, country_id,province_id, percent_from, tax_from, currency) values ('province',(select id from country where name = 'Japan'),(select id from province where name = 'Kanto'),10,0,'JPY');
+insert into tax  (jurisdiction, country_id,province_id, percent_from, tax_from, currency) values ('province',(select id from country where name = 'Japan'),(select id from province where name = 'Kansai'),10,0,'JPY');
+insert into tax  (jurisdiction, country_id,province_id, percent_from, tax_from, currency) values ('province',(select id from country where name = 'Japan'),(select id from province where name = 'Tōkai'),10,0,'JPY');
+insert into tax  (jurisdiction, country_id,province_id, percent_from, tax_from, currency) values ('province',(select id from country where name = 'Japan'),(select id from province where name = 'Kyushu'),10,0,'JPY');
+insert into tax  (jurisdiction, country_id,province_id, percent_from, tax_from, currency) values ('province',(select id from country where name = 'Japan'),(select id from province where name = 'Hokkaido'),10,0,'JPY');
+
+
+
+insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency) values ('federal',(select id from country where name = 'South Korea'),15.4,0,'KRW');
+insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency,fixed_tax) values ('federal',(select id from country where name = 'South Korea'),23.5,14000000,'KRW',850000);
+insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency,fixed_tax) values ('federal',(select id from country where name = 'South Korea'),31.6,50000000,'KRW',6240000);
+insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency,fixed_tax) values ('federal',(select id from country where name = 'South Korea'),41.5,88000000,'KRW',15360000);
+insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency,fixed_tax) values ('federal',(select id from country where name = 'South Korea'),44.2,150000000,'KRW',37060000);
+insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency,fixed_tax) values ('federal',(select id from country where name = 'South Korea'),46,300000000,'KRW',94060000);
+insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency,fixed_tax) values ('federal',(select id from country where name = 'South Korea'),47.8,500000000,'KRW',174060000);
+insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency,fixed_tax) values ('federal',(select id from country where name = 'South Korea'),50.5,1000000000,'KRW',384060000);
+
+
+insert into tax  (jurisdiction, country_id,city_id, percent_from, tax_from, currency) values ('city',(select id from country where name = 'Denmark'),(select id from city where name = 'Copenhagen'),23.39,0,'DKK');
+insert into tax  (jurisdiction, country_id,city_id, percent_from, tax_from, currency) values ('city',(select id from country where name = 'Denmark'),(select id from city where name = 'Aarhus'),24.52,0,'DKK');
+insert into tax  (jurisdiction, country_id,city_id, percent_from, tax_from, currency) values ('city',(select id from country where name = 'Denmark'),(select id from city where name = 'Aalborg'),25.60,0,'DKK');
+
+
+insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency) values ('federal',(select id from country where name = 'Denmark'),12.01,0,'DKK');
+insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency) values ('federal',(select id from country where name = 'Denmark'),7.5,696956,'DKK');
+insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency) values ('federal',(select id from country where name = 'Denmark'),7.5,845543,'DKK');
+insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency) values ('federal',(select id from country where name = 'Denmark'),5,2818152,'DKK');
+
+
+
+
+
