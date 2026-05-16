@@ -18,6 +18,7 @@ services:
       - ./sql/province.sql:/docker-entrypoint-initdb.d/05-province.sql:ro
       - ./sql/cities.sql:/docker-entrypoint-initdb.d/06-cities.sql:ro
       - ./sql/tax.sql:/docker-entrypoint-initdb.d/07-tax.sql:ro
+      - ./sql/deduction.sql:/docker-entrypoint-initdb.d/08-deduction.sql:ro
 
 volumes:
   postgres-data:

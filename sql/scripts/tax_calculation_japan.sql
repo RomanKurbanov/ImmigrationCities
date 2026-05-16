@@ -14,10 +14,8 @@
 -- (SELECT LEAST(B1_limit, (:salary * (B1 / 100))) + LEAST(B2_limit, (:salary * (B2 / 100))) AS N1 FROM dual) AS tax_calculation;
 
 
-SELECT SUM(7000000 - (SUM(N1) AS N1)
+SELECT SUM(N1) AS N1
 FROM (SELECT LEAST(tax_limit, (7000000 * (percent_from / 100))) AS N1
       FROM tax
       WHERE jurisdiction = 'social'
-        AND country_id = (SELECT ID FROM country WHERE name = 'Japan')));
-
-SELECT SUM(N1)
+        AND country_id = (SELECT ID FROM country WHERE name = 'Japan'));
