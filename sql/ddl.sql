@@ -101,5 +101,3 @@ CREATE table deduction (
     foreign key (currency) references currency(id)
                        match simple on update no action on delete no action
 );
-
-al
