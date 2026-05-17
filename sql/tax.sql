@@ -293,6 +293,17 @@ insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency) va
 insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency) values ('federal',(select id from country where name = 'Denmark'),5,2818152,'DKK');
 
 
+insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency) values ('federal',(select id from country where name = 'Germany'),42,68430,'EUR');
+insert into tax  (jurisdiction, country_id, percent_from, tax_from, currency) values ('federal',(select id from country where name = 'Germany'),45,277826,'EUR');
+
+insert into tax  (jurisdiction, country_id, percent_from,percent_to, tax_from, currency) values ('federal',(select id from country where name = 'Germany'),14,24,12349,'EUR');
+--y = (zvE – 12.348) / 10.000
+--налог = (914,51 × y + 1.400) × y
+
+insert into tax  (jurisdiction, country_id, percent_from,percent_to, tax_from, currency) values ('federal',(select id from country where name = 'Germany'),24,42,17800,'EUR');
+--z = (zvE – 17.799) / 10.000
+--налог = (173,10 × z + 2.397) × z + 1.034,87
+
 
 
 
